@@ -4,6 +4,6 @@ contextBridge.exposeInMainWorld('versions', {
     node: () => process.versions.node,
     chrome: () => process.versions.chrome,
     electron: () => process.versions.electron,
-    // we can also expose variables, not just functions
-    ping: () => ipcRenderer.invoke('ping')
+    ping: () => ipcRenderer.invoke('ping'),
+    showMenu: () => ipcRenderer.send('show-context-menu')
 })

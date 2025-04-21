@@ -8,3 +8,8 @@ pingButton.addEventListener('click', () => {
         pingButton.innerText = pong
     })
 })
+
+const showMenuButton = document.getElementById('show-menu')
+showMenuButton.addEventListener('click', () => {
+    versions.showMenu()
+})

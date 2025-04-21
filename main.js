@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require('electron')
+const { app, BrowserWindow, ipcMain, Menu } = require('electron')
 const path = require('path')
 
 const createWindow = () => {
@@ -12,6 +12,17 @@ const createWindow = () => {
 
     win.loadFile('index.html')
     // win.loadURL('https://github.com/ksinghj')
+
+    // Handle the show-context-menu message
+    ipcMain.on('show-context-menu', () => {
+        const menu = Menu.buildFromTemplate([
+            { label: 'Option 1', click: () => console.log('Option 1 clicked') },
+            { label: 'Option 2', click: () => console.log('Option 2 clicked') },
+            { type: 'separator' },
+            { label: 'Option 3', click: () => console.log('Option 3 clicked') }
+        ])
+        menu.popup(BrowserWindow.getFocusedWindow())
+    })
 }
 
 app.whenReady().then(() => {
